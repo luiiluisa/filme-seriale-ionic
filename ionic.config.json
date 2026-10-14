@@ -1,0 +1,7 @@
+{
+  "name": "filme-seriale",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

@@ -1,0 +1,31 @@
+.library-content { --background: #f5f6f9; --color: #293247; }
+.library-shell, .detail-shell { max-width: 760px; margin: 20px auto; }
+.library-intro { margin-bottom: 22px; }
+.library-intro h1 { font-size: 26px; font-weight: 700; }
+.library-intro p, .collection-count { color: #687183; font-size: 14px; }
+.collection-count { display: block; margin-top: 14px; }
+.library-shell ion-button, .detail-shell ion-button { --border-radius: 7px; text-transform: none; letter-spacing: 0; }
+.library-shell ion-list { background: transparent; margin-top: 20px; padding: 0; }
+.library-shell ion-item { --background: white; --color: #293247; --border-color: transparent; --padding-top: 7px; --padding-bottom: 7px; margin-bottom: 9px; border: 1px solid #e1e5ed; border-radius: 8px; }
+.library-shell ion-label h2 { font-size: 17px; font-weight: 600; }
+.library-shell ion-label p { color: #687183; margin-top: 5px; }
+.feedback, .empty-collection { padding: 16px; border-radius: 8px; background: white; color: #687183; }
+.feedback { color: #a2384e; }
+.detail-shell { max-width: 620px; }
+.detail-shell > ion-button { margin-bottom: 16px; }
+.detail-card { background: white; border: 1px solid #e1e5ed; border-radius: 10px; }
+.detail-info { padding: 28px; }
+.eyebrow { color: #687183; font-size: 12px; font-weight: 600; }
+.detail-info h1 { font-size: 28px; font-weight: 700; margin: 12px 0 16px; overflow-wrap: anywhere; }
+.watch-status { display: inline-block; padding: 6px 10px; border-radius: 6px; font-size: 13px; background: #fff3d9; color: #916518; }
+.watch-status.watched { background: #e4f4ec; color: #287254; }
+.detail-facts { margin: 24px 0; }
+.detail-facts > div { display: flex; justify-content: space-between; gap: 20px; padding: 13px 0; border-bottom: 1px solid #edf0f5; }
+.detail-facts dt { color: #687183; font-size: 14px; }
+.detail-facts dd { margin: 0; text-align: right; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.detail-loading { text-align: center; padding: 60px 0; color: #687183; }
+@media (max-width: 480px) {
+    .detail-info { padding: 20px; }
+    .library-shell ion-item { --padding-start: 10px; --inner-padding-end: 6px; }
+    .library-shell ion-item ion-button { font-size: 11px; --padding-start: 6px; --padding-end: 6px; margin-inline: 2px; }
+}
