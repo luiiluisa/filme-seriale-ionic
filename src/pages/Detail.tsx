@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { IonButton, IonContent, IonHeader, IonPage, IonSpinner, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
+import { IonButton, IonContent, IonHeader, IonPage, IonSpinner, IonTitle, IonToolbar } from '@ionic/react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { type Film, obtineFilm } from '../services/api';
+import { CHANGE, connectSocket, type Film, obtineFilm } from '../services/api';
 import './Home.css';
 
 const Detail: React.FC = () => {
@@ -15,7 +15,7 @@ const Detail: React.FC = () => {
         setIncarcare(true);
         setEroare('');
         try {
-            if (!id || !Number.isInteger(Number(id)) || Number(id) <= 0) throw new Error();
+            if (!id || !Number.isInteger(Number(id)) || Number(id) === 0) throw new Error();
             setFilm(await obtineFilm(Number(id)));
         } catch {
             setFilm(null);
@@ -25,11 +25,12 @@ const Detail: React.FC = () => {
         }
     }, [id]);
 
-    useIonViewWillEnter(() => { void incarca(); }, [incarca]);
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:3000/ws');
-        socket.onmessage = () => { void incarca(); };
-        return () => socket.close();
+        void incarca();
+        const update = () => { void incarca(); };
+        const close = connectSocket(update);
+        window.addEventListener(CHANGE, update);
+        return () => { close(); window.removeEventListener(CHANGE, update); };
     }, [incarca]);
 
     return (

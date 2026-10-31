@@ -32,6 +32,7 @@ const Edit: FC = () => {
     const [an, setAn] = useState('');
     const [vazut, setVazut] = useState(false);
     const [eroare, setEroare] = useState('');
+    const [salvare, setSalvare] = useState(false);
 
     useEffect(() => {
         if (!id) return;
@@ -48,8 +49,9 @@ const Edit: FC = () => {
     }, [id]);
 
     async function salveaza() {
-        if (!titlu.trim() || !gen.trim() || !an.trim()) {
-            setEroare('Completează titlul, genul și anul.');
+        if (salvare) return;
+        if (!titlu.trim() || !gen.trim() || !an.trim() || !Number.isInteger(Number(an)) || Number(an) < 1888 || Number(an) > 2200) {
+            setEroare('Completează titlul, genul și un an întreg între 1888 și 2200.');
             return;
         }
 
@@ -61,6 +63,7 @@ const Edit: FC = () => {
             vazut,
         };
 
+        setSalvare(true);
         try {
             if (id) {
                 await modificaFilm(Number(id), film);
@@ -69,8 +72,10 @@ const Edit: FC = () => {
             }
 
             navigate('/home', { replace: true });
-        } catch {
-            setEroare('Nu am putut salva. Verifică dacă serverul rulează.');
+        } catch (error) {
+            setEroare(error instanceof Error ? error.message : 'Nu am putut salva.');
+        } finally {
+            setSalvare(false);
         }
     }
 
@@ -133,8 +138,8 @@ const Edit: FC = () => {
 
                 {eroare && <p>{eroare}</p>}
 
-                <IonButton expand="block" onClick={() => void salveaza()}>
-                    Salvează
+                <IonButton expand="block" disabled={salvare} onClick={() => void salveaza()}>
+                    {salvare ? 'Se salvează…' : 'Salvează'}
                 </IonButton>
 
                 <IonButton

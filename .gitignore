@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+/server/node_modules
+/server/*.db
+*.log
 /.pnp
 .pnp.js
 
@@ -29,6 +32,6 @@ yarn-error.log*
 
 # Optional eslint cache
 .eslintcache
-/server/node_modules/
-/server/*.db
 /server/*.db-*
+/.env
+/server/.env
