@@ -1,0 +1,14 @@
+{
+  "name": "filme-seriale-server",
+  "version": "1.0.0",
+  "description": "Filme și seriale REST and WebSocket server",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node --env-file=.env src/index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "ws": "^8.22.0"
+  }
+}
